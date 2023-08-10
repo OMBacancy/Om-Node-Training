@@ -36,10 +36,10 @@ fs.createReadStream('Train.csv')
                 getTrainNumberAndNames()
                 break;
             case '6':
-                findTravelOptions()
+                findTravelOptions(args[3], args[4])
                 break;
             default:
-                console.log("Invalid Choice.")
+                console.table("Invalid Choice.")
                 break;
         }
     });
@@ -49,12 +49,13 @@ function longestRoute() {
     let maxRouteTrainDetails = null
     let maxRouteTrainDistance = -1
     for (const key of trainNoKeys) {
-        for (const train of trainGroupByTrainNo[key]) if (+train['Distance'] > maxRouteTrainDistance) {
-            maxRouteTrainDistance = +train['Distance']
-            maxRouteTrainDetails = train
-        }
+        for (const train of trainGroupByTrainNo[key])
+            if (+train['Distance'] > maxRouteTrainDistance) {
+                maxRouteTrainDistance = +train['Distance']
+                maxRouteTrainDetails = train
+            }
     }
-    console.log(maxRouteTrainDetails)
+    console.table(maxRouteTrainDetails)
 }
 
 function shortestRoute() {
@@ -77,7 +78,7 @@ function shortestRoute() {
             }
         }
     }
-    console.log(allTrainsWithMinimumRoute)
+    console.table(allTrainsWithMinimumRoute)
 }
 
 function getFewerStations() {
@@ -96,7 +97,7 @@ function getFewerStations() {
             allTrainsWithFewerStation.push(trainGroupByTrainNo[key][0])
         }
     }
-    console.log(allTrainsWithFewerStation)
+    console.table(allTrainsWithFewerStation)
 }
 
 function getMostStations() {
@@ -116,7 +117,7 @@ function getMostStations() {
             allTrainsWithMostStation.push(trainGroupByTrainNo[key][0])
         }
     }
-    console.log(allTrainsWithMostStation)
+    console.table(allTrainsWithMostStation)
 }
 
 function getTrainNumberAndNames() {
@@ -127,7 +128,7 @@ function getTrainNumberAndNames() {
         train['Train Name'] = trainGroupByTrainNo[key][0]['Train Name']
         trainNumberAndName.push(train)
     }
-    console.log(trainNumberAndName)
+    console.table(trainNumberAndName)
 }
 
 function findTravelOptions(sourceCode, destinationCode) {
@@ -144,6 +145,6 @@ function findTravelOptions(sourceCode, destinationCode) {
             }
         }
     }
-    console.log(possibleTrains)
+    console.table(possibleTrains)
 }
 
